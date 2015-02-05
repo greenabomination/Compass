@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="background_color">#FF555555</color>
+    <color name="marker_color">#AAFFFFFF</color>
+    <color name="text_color">#AAFFFFFF</color>
+
+</resources>
