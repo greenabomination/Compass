@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 
@@ -50,11 +51,13 @@ public class CompassView extends View {
 
     protected void initCompassView() {
         setFocusable(true);
-
+        Log.d("myLogs", "preResource");
         Resources r = this.getResources();
-        circlePaint.setColor(r.getColor(R.color.background_color));
+        circlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         circlePaint.setStrokeWidth(1);
         circlePaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        circlePaint.setColor(r.getColor(R.color.background_color));
+
 
         northString = r.getString(R.string.cardinal_north);
         eastString = r.getString(R.string.cardinal_east);
@@ -106,6 +109,7 @@ public class CompassView extends View {
         int radius = Math.min(px, py);
 
         canvas.drawCircle(px, py, radius, circlePaint);
+
         canvas.save();
         canvas.rotate(-bearing, px, py);
 
@@ -141,7 +145,7 @@ public class CompassView extends View {
                     }
                 }
                 canvas.drawText(dirString, cardinalX, cardinalY, textPaint);
-            } else {
+            } else
                 if (i % 3 == 0) {
                     String angle = String.valueOf(i * 15);
                     float angleTextWidth = textPaint.measureText(angle);
@@ -155,7 +159,7 @@ public class CompassView extends View {
             }
             canvas.restore();
         }
-    }
+
 
     @Override
     public boolean dispatchPopulateAccessibilityEvent
